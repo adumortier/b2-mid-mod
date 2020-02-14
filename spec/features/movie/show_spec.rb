@@ -25,6 +25,9 @@ RSpec.describe Movie, type: :feature do
 
       actor3_info = {name: "Shubaka", age: 82}
       @actor3 = Actor.create!(actor3_info)
+
+      actor4_info = {name: "David", age: 82}
+      @actor4 = Actor.create!(actor3_info)
     
       @movie1.actors << @actor1
       @movie1.actors << @actor2
@@ -44,13 +47,26 @@ RSpec.describe Movie, type: :feature do
 
     end
 
-#     Story 1
-# As a user, 
-# When I visit the studio index page
-# I see a list of all of the movie studios 
-# And underneath each studio, I see the names of all of its movies.
+    it "the show page has a form to allow the user to enter an actor name" do
+  
+      visit "/movies/#{@movie1.id}"
 
+      fill_in 'Name', with: "David"
+      click_button 'Submit'
 
+      expect(current_path).to eq("/movies/#{@movie1.id}")
+      expect(page).to have_content("Actors: David Fisher Ford Shubaka")
+    end
+
+# Story 4
+# As a user,
+# When I visit a movie show page,
+# I see a form for an actors name
+# and when I fill in the form with an existing actor's name
+# I am redirected back to that movie's show page
+# And I see the actor's name listed
+# (This should not break story 3, You do not have to test for a sad path)
+# St
 
   end
 
