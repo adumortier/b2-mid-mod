@@ -9,4 +9,12 @@ class Movie < ApplicationRecord
   has_many :actor_movies
   has_many :actors, through: :actor_movies
 
+  def list_actors 
+    actors.order(:name)
+  end
+
+  def average_age 
+    actors.average(:age)
+  end
+
 end

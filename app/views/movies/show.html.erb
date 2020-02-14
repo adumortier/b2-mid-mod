@@ -1,0 +1,11 @@
+<p> Name: <%= @page_info[:movie].name %> </p>
+<p> Creation year: <%= @page_info[:movie].creation_year %> </p>
+<p> Genre: <%= @page_info[:movie].genre %> </p>
+</p> "Average age of actors: <%= @page_info[:average_age] %> </p>
+<p> Actors: <%= @page_info[:list_actors].each do |actor| %>
+    <%= actor.name %> 
+    <% end %>
+</p>
+
+
+
