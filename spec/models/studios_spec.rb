@@ -10,7 +10,7 @@ RSpec.describe Studio, type: :model do
     it {should have_many :movies}
   end
 
-  describe 'methods' do 
-  end
+  # describe 'methods' do 
+  # end
 
 end
