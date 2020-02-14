@@ -1,12 +1,12 @@
 require 'rails_helper'
 
-RSpec.describe Studio, type: :model do 
+RSpec.describe Studio, type: :feature do 
 
   describe "As a visitor" do 
 
     before :each do 
       @studio1 = Studio.create!({name: "LucasFilms"})
-      movie1_info = {name: "Stars Wars 1", creation_year: 1981, genre: "fantastic"}
+      movie1_info = {name: "Star Wars 1", creation_year: 1981, genre: "fantastic"}
       @studio1.movies.create!(movie1_info)
       movie2_info = {name: "Star Wars 2", creation_year: 1985, genre: "fantastic"}
       @studio1.movies.create!(movie2_info)
@@ -14,31 +14,33 @@ RSpec.describe Studio, type: :model do
       @studio1.movies.create!(movie3_info)
 
       @studio2 = Studio.create!({name: "Pixar"})
-      movie4_info = {name: "Toy Story 1", creation_year: 2006, genre: "animation"}
+      movie4_info = {name: "Toys Story 1", creation_year: 2006, genre: "animation"}
       @studio2.movies.create!(movie4_info)
-      movie5_info = {name: "Toy Story 2", creation_year: 2008, genre: "animation"}
+      movie5_info = {name: "Toys Story 2", creation_year: 2008, genre: "animation"}
       @studio2.movies.create!(movie5_info)
-      movie6_info = {name: "Toy Story 3", creation_year: 2010, genre: "animation"}
+      movie6_info = {name: "Toys Story 3", creation_year: 2010, genre: "animation"}
       @studio2.movies.create!(movie6_info)
 
     end
 
     it "the index page of a studio shows a list of movies for that studio" do
+
       visit "/studios"
+
       within("div#studio_#{@studio1.id}") do
         expect(page).to have_content("Name: LucasFilms")
-        expect(page).to have_content("Stars Wars 1")
-        expect(page).to have_content("Stars Wars 2")
-        expect(page).to have_content("Stars Wars 3")
+        expect(page).to have_content("Star Wars 1")
+        expect(page).to have_content("Star Wars 2")
+        expect(page).to have_content("Star Wars 3")
       end
 
       within("div#studio_#{@studio2.id}") do
         expect(page).to have_content("Name: Pixar")
-        expect(page).to have_content("Toy Story 1")
-        expect(page).to have_content("Toy Story 2")
-        expect(page).to have_content("Toy Story 3")
+        expect(page).to have_content("Toys Story 1")
+        expect(page).to have_content("Toys Story 2")
+        expect(page).to have_content("Toys Story 3")
       end
-      
+
       
     end
 
