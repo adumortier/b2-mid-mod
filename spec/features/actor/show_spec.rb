@@ -17,17 +17,15 @@ RSpec.describe Actor, type: :feature do
       @studio1 = Studio.create!({name: "LucasFilms"})
 
       movie1_info = {name: "Indiana Jones 1", creation_year: 1986, genre: "adventure"}
-      movie1 = @studio1.movies.create!(movie1_info)
-
+      @movie1 = @studio1.movies.create!(movie1_info)
       movie2_info = {name: "Indiana Jones 2", creation_year: 1988, genre: "adventure"}
-      movie2 = @studio1.movies.create!(movie2_info)
-
+      @movie2 = @studio1.movies.create!(movie2_info)
       movie3_info = {name: "Indiana Jones 3", creation_year: 1991, genre: "adventure"}
-      movie3 = @studio1.movies.create!(movie3_info)
+      @movie3 = @studio1.movies.create!(movie3_info)
 
-      @actor1.movies << movie1
-      @actor1.movies << movie2
-      @actor1.movies << movie3
+      @actor1.movies << @movie1
+      @actor1.movies << @movie2
+      @actor1.movies << @movie3
     end
 
     it "the show page of an actor shows his/her name and the movies (s)he is in" do
@@ -35,11 +33,31 @@ RSpec.describe Actor, type: :feature do
       visit "/actors/#{@actor1.id}"
 
       expect(page).to have_content("Name: Harrisson Ford")
+      expect(page).to have_content("Age: 78")
       expect(page).to have_content("Indiana Jones 1")
       expect(page).to have_content("Indiana Jones 2")
       expect(page).to have_content("Indiana Jones 3")
 
-      end
-      
     end
+
+    it "the show page has list of all actors the actor has worked with" do
+
+      actor2_info = {name: "Fisher", age: 80}
+      actor2 = Actor.create!(actor2_info)
+      
+      actor3_info = {name: "Shubaka", age: 82}
+      actor3 = Actor.create!(actor3_info)
+      
+      @movie1.actors << actor2 
+      @movie2.actors << actor2
+      @movie2.actors << actor3
+      
+      visit "/actors/#{@actor1.id}"
+
+      expect(page).to have_content("Has worked with: Fisher, Shubaka")
+
+    end
+      
+  end
+
 end

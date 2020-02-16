@@ -1,15 +1,10 @@
 class MoviesController < ApplicationController
 
   def show
-    movie = Movie.find(params[:id])
-    @page_info = {movie: movie,  list_actors: movie.list_actors, average_age: movie.average_age }
+    # @page_info = {movie: movie,  list_actors: movie.list_actors, average_age: movie.average_age }
+    @movie = Movie.find(params[:id])
   end
 
-  def update
-    movie = Movie.find(params[:id])
-    movie.add_actor(params[:name])
-    redirect_to "/movies/#{movie.id}"
-  end
 
   private 
 

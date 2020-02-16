@@ -17,10 +17,10 @@ class Movie < ApplicationRecord
     actors.average(:age)
   end
 
-  def add_actor(actor_name)
-    actor = Actor.where("name = '#{actor_name}'")
-    actors << actor 
-  end
+  # def add_actor(actor_name)
+  #   actor = Actor.where("name = '#{actor_name}'")
+  #   actors << actor 
+  # end
 
 
 end

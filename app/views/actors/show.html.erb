@@ -1,4 +1,7 @@
 <p> Name: <%= @actor.name %>  </p>
+<p> Age: <%= @actor.age %>  </p>
+
   <% @actor.movies.each do |movie| %>
     <p> <%= movie.name %> </p>
   <% end %>%
+<p> Has worked with: <%= @actor.has_worked_with.join(', ') %>  </p>

@@ -27,7 +27,7 @@ RSpec.describe Movie, type: :feature do
       @actor3 = Actor.create!(actor3_info)
 
       actor4_info = {name: "David", age: 82}
-      @actor4 = Actor.create!(actor3_info)
+      @actor4 = Actor.create!(actor4_info)
     
       @movie1.actors << @actor1
       @movie1.actors << @actor2
